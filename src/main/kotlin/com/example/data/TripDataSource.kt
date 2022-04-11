@@ -8,6 +8,6 @@ interface TripDataSource {
 
     suspend fun getTripById(tripId: String): Trip
 
-    suspend fun insertTrip()
+    suspend fun insertTrip(trip: Trip)
 
 }

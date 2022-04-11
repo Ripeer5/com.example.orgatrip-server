@@ -23,18 +23,7 @@ class TripDataSourceImpl(
         }
     }
 
-    override suspend fun insertTrip() {
-        val bob = Participant("bobId", "Bob")
-        val jack = Participant("jackId", "Jack")
-        val participants = listOf(bob, jack)
-
-        val trip = Trip(
-            "trip1Id",
-            "trip1Name",
-/*
-            participants
-*/
-        )
-        trips.insertOne(trip)
+    override suspend fun insertTrip(trip: Trip) {
+            trips.insertOne(trip)
     }
 }
