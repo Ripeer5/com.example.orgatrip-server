@@ -1,7 +1,6 @@
-package com.example.data
+package com.example.feature_trip.data
 
-import com.example.data.model.Participant
-import com.example.data.model.Trip
+import com.example.feature_trip.data.model.Trip
 import org.litote.kmongo.coroutine.CoroutineDatabase
 
 class TripDataSourceImpl(

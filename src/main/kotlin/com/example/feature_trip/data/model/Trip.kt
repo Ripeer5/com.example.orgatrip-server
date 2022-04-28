@@ -1,4 +1,4 @@
-package com.example.data.model
+package com.example.feature_trip.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

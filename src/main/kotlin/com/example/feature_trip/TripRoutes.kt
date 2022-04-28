@@ -1,40 +1,32 @@
 package com.example.routes
 
-import com.example.data.model.Trip
+import com.example.feature_trip.data.TripDataSource
 import io.ktor.application.*
 import io.ktor.http.*
-import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import org.litote.kmongo.KMongo
-import org.litote.kmongo.eq
-import org.litote.kmongo.findOne
-import org.litote.kmongo.getCollection
 
 private const val BASE_URL = "http://192.168.1.81:8080"
-val client = KMongo.createClient()
-val database = client.getDatabase("OrgaTrip")
+/*val client = KMongo.createClient()
+val database = client.getDatabase("OrgaTrip")*/
 
 
 /*listOf( Trip("RomeId", "RomeName"), Trip("ParisId", "ParisName"))*/
 
 fun Route.tripRouting() {
+
+    val api = TripDataSource.create()
+
     route("/trip") {
         get {
-            val list: List<Trip> = database.getCollection<Trip>("trip")
-                .find(Trip::name eq "LondonName").toList()
-            var trip = Trip("h", "r")
-            for (t in list) {
-                if (t.name == "LondonName") {
-                    trip = t
-                }
-            }
+            val listTrip= api.getAllTrips()
+                    /*List<Trip> = database.getCollection<Trip>("trip").find().toList()*/
             call.respond(
                 HttpStatusCode.OK,
-                trip
+                listTrip
             )
         }
-        get("/{id}") {
+       /* get("/{id}") {
 
             val tripId =
                 call.parameters["id"] ?: return@get call.respondText(
@@ -42,12 +34,12 @@ fun Route.tripRouting() {
                     status = HttpStatusCode.BadRequest
                 )
 
-            val trips = database?.getCollection<Trip>("trip")
+            *//*val trips = database?.getCollection<Trip>("trip")*//*
 
-            val trip = trips?.findOne(
+            *//*val trip = trips?.findOne(
                 Trip::id eq tripId
             ) ?: Trip("erreurId", "erreurName")
-
+*//*
             call.respond(
                 HttpStatusCode.OK,
                 trip
@@ -61,7 +53,7 @@ fun Route.tripRouting() {
             }catch (e: Exception) {
                 throw Exception("erreur d'ecriture", e.cause)
             }
-        }
+        }*/
     }
 
 }

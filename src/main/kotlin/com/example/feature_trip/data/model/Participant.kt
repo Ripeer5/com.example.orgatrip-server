@@ -1,4 +1,4 @@
-package com.example.data.model
+package com.example.feature_trip.data.model
 
 import kotlinx.serialization.*
 import org.bson.codecs.pojo.annotations.BsonId
